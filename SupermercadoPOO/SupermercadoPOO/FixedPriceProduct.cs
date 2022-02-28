@@ -10,7 +10,7 @@ namespace SupermercadoPOO
     {
         public override decimal ValueToPay()
         {
-           return Price* (decimal)Tax;
+           return Price* (decimal)Tax+Price;
         }
         public override string ToString()
         {

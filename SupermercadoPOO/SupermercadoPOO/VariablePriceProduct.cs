@@ -7,17 +7,18 @@
 
         public override decimal ValueToPay()
         {
-            return Price* (decimal)(Quantity*Tax);
+            decimal priceVariable = (Price / 1000) * (decimal)(Quantity);
+            return (priceVariable * (decimal) Tax) +priceVariable;
         }
 
         public override string ToString()
         {
             return $"{Id} {Description}" +
-                $"\n\t Measurement......: {$"{Measurement}",15}" +
-                $"\n\t Quantity.........: {$"{Quantity:N2}",15}" +
-                $"\n\t Price.........:    {$"{Price:C2}",15}" +
-                $"\n\t Tax.........:      {$"{Tax:P2}",15}" +
-                $"\n\t Value............: {$"{ValueToPay():C2}",15}";
+                $"\n\tMeasurement......:{$"{Measurement}",15}" +
+                $"\n\tQuantity.........:{$"{Quantity:N2}",15}" +
+                $"\n\tPrice.........:   {$"{Price:C2}",15}" +
+                $"\n\tTax.........:     {$"{Tax:P2}",15}" +
+                $"\n\tValue............:{$"{ValueToPay():C5}",15}";
         }
     }
 }

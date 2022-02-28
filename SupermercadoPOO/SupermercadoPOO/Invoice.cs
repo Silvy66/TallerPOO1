@@ -17,6 +17,7 @@ namespace SupermercadoPOO
             return _products;
 
         }
+        
         public decimal ValueToPay()
         {
 

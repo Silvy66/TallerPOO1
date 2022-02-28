@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace SupermercadoPOO
 {
@@ -13,30 +8,36 @@ namespace SupermercadoPOO
         public ICollection Products { get; set; }
 
         private decimal _payComposed;
-        private string  _productName;
+        private string _productName;
+        private float _discountComposed;
+        private decimal _payTotal;
+
         public override decimal ValueToPay()
         {
-            foreach (Product P in Products)
-            {
-                _payComposed +=( P.ValueToPay() *(decimal) Discount) - P.ValueToPay();
 
+            foreach (Product product in Products)
+            {
+                _discountComposed = (float)product.ValueToPay()*Discount;
+                _payComposed += ValueToPay() - (decimal)_discountComposed;
+                _payTotal += product.ValueToPay();
             }
+
             return _payComposed;
         }
         public override string ToString()
         {
             foreach (Product product in Products)
             {
-                _productName += product.Description + ","; 
+                _productName += product.Description + ",";
+                
             }
             return $"{Id} {Description}" +
                 $"\n\t Products......:    {$"{_productName}",15}" +
                 $"\n\t Discount.........: {$"{Discount:P2}",15}" +
-                $"\n\t Price.........:    {$"{Price:C2}",15}" +
-                $"\n\t Value............: {$"{ValueToPay():C2}",15}" +
+                $"\n\t Value............: {$"{_payComposed:C2}",15}" +
                 $"\n\t                  =============================" +
                 $"\n\t TOTAl:.........:   {$"{_payComposed:C2}",15}";
-                
+
         }
     }
 }
