@@ -12,10 +12,12 @@
 
         public override string ToString()
         {
-            return $"{base.ToString()}" +
-                $"\n Measurement......:{Measurement}" +
-                $"\n Quantity......: {Quantity}" +
-                $"\n Value.......:{ValueToPay():C2}";
+            return $"{Id} {Description}" +
+                $"\n\t Measurement......: {$"{Measurement}",15}" +
+                $"\n\t Quantity.........: {$"{Quantity:N2}",15}" +
+                $"\n\t Price.........:    {$"{Price:C2}",15}" +
+                $"\n\t Tax.........:      {$"{Tax:P2}",15}" +
+                $"\n\t Value............: {$"{ValueToPay():C2}",15}";
         }
     }
 }
