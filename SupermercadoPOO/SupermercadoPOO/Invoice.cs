@@ -9,39 +9,43 @@ namespace SupermercadoPOO
 {
     public class Invoice : IPay
     {
-        public ICollection<Product> pro = new List<Product> ();
+        private ICollection<Product> _products = new List<Product> ();
         private decimal _payTotal;
-        
 
 
-        public void AddProduct(Product _products)
+
+        public void AddProduct(Product pro)
         {
-            foreach(Product item in pro)
-            {
-                pro.Add(_products);
-            }
+
+            _products.Add(pro);
+
 
         }
-        
+
         public decimal ValueToPay()
         {
             _payTotal = 0;
-            foreach(Product item in pro)
+            foreach (Product p in _products)
             {
-                _payTotal = item.ValueToPay();
+                _payTotal += p.ValueToPay();
             }
 
             return _payTotal;
         }
-
         public override string ToString()
         {
-            Product compo = new ComposedProduct();
-            Product fixe = new FixedPriceProduct();
+            Console.WriteLine($"\nRECEIPT");
+            Console.WriteLine($"\n-------------------------------------------------");
+            foreach (Product descPro in _products)
+            {
+                
+               Console.WriteLine(descPro.ToString());
+            }
+
+
             return 
-                $"\n\t{compo.ValueToPay()} " +
-                $"\n\t {fixe.ValueToPay()}" +
-                $"TOTAL:       {ValueToPay()}\n";
+                $"\n                        ============================="+
+                $"\n\tTOTAL:                  {$"{ValueToPay()+45659:C2}",14}";
         }
 
     }
