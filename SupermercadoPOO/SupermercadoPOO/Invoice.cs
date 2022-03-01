@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,26 +9,38 @@ namespace SupermercadoPOO
 {
     public class Invoice : IPay
     {
-        private Product _products;
+        public ICollection<Product> pro = new List<Product> ();
+        private decimal _payTotal;
+        
 
-      
 
-        public Product AddProduct(Product _products)
+        public void AddProduct(Product _products)
         {
-            return _products;
+            foreach(Product item in pro)
+            {
+                pro.Add(_products);
+            }
 
         }
         
         public decimal ValueToPay()
         {
+            _payTotal = 0;
+            foreach(Product item in pro)
+            {
+                _payTotal = item.ValueToPay();
+            }
 
-            return ++_products.Price;
+            return _payTotal;
         }
 
         public override string ToString()
         {
-            return $"{_products} " +
-                $"\n ============" +
+            Product compo = new ComposedProduct();
+            Product fixe = new FixedPriceProduct();
+            return 
+                $"\n\t{compo.ValueToPay()} " +
+                $"\n\t {fixe.ValueToPay()}" +
                 $"TOTAL:       {ValueToPay()}\n";
         }
 

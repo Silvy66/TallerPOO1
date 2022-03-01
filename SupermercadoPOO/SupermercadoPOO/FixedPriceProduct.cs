@@ -14,8 +14,8 @@ namespace SupermercadoPOO
         }
         public override string ToString()
         {
-            return $"{base.ToString()}" +
-                $"\n\tValue..........:{$"{ValueToPay():C2}",15}";
+            return $"{base.ToString()}";
+                
         }
 
     }

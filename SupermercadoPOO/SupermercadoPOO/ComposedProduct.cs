@@ -7,36 +7,37 @@ namespace SupermercadoPOO
         public float Discount { get; set; }
         public ICollection Products { get; set; }
 
-        private decimal _payComposed;
-        private string _productName;
+        private decimal _payComposed=0;
+        private string _productName="";
         private float _discountComposed;
-        private decimal _payTotal;
+       
 
         public override decimal ValueToPay()
         {
-
-            foreach (Product product in Products)
+            foreach (Product p in Products)
             {
-                _discountComposed = (float)product.ValueToPay()*Discount;
-                _payComposed += ValueToPay() - (decimal)_discountComposed;
-                _payTotal += product.ValueToPay();
+              
+                _discountComposed = (float)p.ValueToPay() * Discount;
+                _payComposed += p.ValueToPay()- (decimal)_discountComposed;
             }
-
+           
             return _payComposed;
         }
         public override string ToString()
         {
+            
             foreach (Product product in Products)
             {
                 _productName += product.Description + ",";
-                
+
             }
-            return $"{Id} {Description}" +
-                $"\n\t Products......:    {$"{_productName}",15}" +
-                $"\n\t Discount.........: {$"{Discount:P2}",15}" +
-                $"\n\t Value............: {$"{_payComposed:C2}",15}" +
-                $"\n\t                  =============================" +
-                $"\n\t TOTAl:.........:   {$"{_payComposed:C2}",15}";
+            return $"{Id}    {Description}" +
+                $"\n\tProducts........: {$"{_productName}",10}" +
+                $"\n\tDiscount........: {$"{Discount:P2}",14}" +
+                $"\n\tValue...........: {$"{ValueToPay():C2}",14}" +
+                $"\nRECEIPT" +
+                $"\n-----------------------------------------------------------------";
+           
 
         }
     }

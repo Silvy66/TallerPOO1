@@ -13,12 +13,12 @@
 
         public override string ToString()
         {
-            return $"{Id} {Description}" +
-                $"\n\tMeasurement......:{$"{Measurement}",15}" +
-                $"\n\tQuantity.........:{$"{Quantity:N2}",15}" +
-                $"\n\tPrice.........:   {$"{Price:C2}",15}" +
-                $"\n\tTax.........:     {$"{Tax:P2}",15}" +
-                $"\n\tValue............:{$"{ValueToPay():C5}",15}";
+            return $"{Id}    {Description}" +
+                $"\n\tMeasurement.....:{$"{Measurement}",5}" +
+                $"\n\tQuantity........:{$"{Quantity:N2}",15}" +
+                $"\n\tPrice...........:{$"{Price:C2}",15}" +
+                $"\n\tTax.............:{$"{Tax:P2}",15}" +
+                $"\n\tValue...........:{$"{ValueToPay():C5}",15}";
         }
     }
 }
